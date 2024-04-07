@@ -1,0 +1,27 @@
+﻿
+@addTagHelper *, AspMvcTagHelperApp
+@{
+    ViewData["Title"] = "Home Page";
+    var e = new Employee(){ Name = "Bobby", Age = 25 };
+    List<string> cities = new() { "Moscow", "Tula", "Voroneg" };
+    PageModel model = new() { Title = "Cities", Items = cities };
+}
+
+<a asp-controller="Home" asp-action="Privacy">Go to Privacy</a>
+@Html.ActionLink("Go to Privacy", "Privacy", "Home")
+
+@* @await Component.InvokeAsync("Dater") *@
+<vc:timer />
+
+<h2>
+    @await Component.InvokeAsync("Employee", new Employee() {Name = "Bobby", Age = 25})
+</h2>
+<h2>
+    <vc:employee employee=e />
+</h2>
+<h2>
+    @await Component.InvokeAsync("ViewTimer")
+</h2>
+
+@await Component.InvokeAsync("List", model)
+
